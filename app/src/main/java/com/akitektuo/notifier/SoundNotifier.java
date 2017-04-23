@@ -14,10 +14,13 @@ import static com.akitektuo.notifier.MainActivity.soundId;
 
 public class SoundNotifier extends AccessibilityService {
 
+    private static final String KEY_NOTIFICATION = "android.app.Notification";
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (preference.getPreferenceBoolean(Preference.KEY_ON_OFF) &&
-                event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
+                event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED &&
+                event.getClassName().equals(KEY_NOTIFICATION)) {
             sound.play(soundId, 1, 1, 1, 0, 1);
             new Handler().postDelayed(new Runnable() {
                 @Override
