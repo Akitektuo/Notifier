@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Notifier</string>
+    <string name="description">Turn on for sound when notifications appear.</string>
 </resources>
