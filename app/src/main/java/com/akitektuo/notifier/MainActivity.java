@@ -6,10 +6,10 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import static com.akitektuo.notifier.SoundNotifier.sound;
-import static com.akitektuo.notifier.SoundNotifier.soundId;
-
 public class MainActivity extends AppCompatActivity {
+
+    public static SoundPool sound;
+    public static int soundId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
