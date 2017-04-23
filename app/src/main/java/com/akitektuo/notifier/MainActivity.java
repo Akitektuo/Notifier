@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         soundId = sound.load(this, R.raw.sound, 1);
         CheckBox checkOnOff = (CheckBox) findViewById(R.id.check_on_off);
         preference = new Preference(this);
+        checkOnOff.setChecked(preference.getPreferenceBoolean(Preference.KEY_ON_OFF));
         checkOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
