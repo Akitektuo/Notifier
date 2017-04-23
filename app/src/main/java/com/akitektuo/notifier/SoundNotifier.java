@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
 
+import static com.akitektuo.notifier.MainActivity.preference;
 import static com.akitektuo.notifier.MainActivity.sound;
 import static com.akitektuo.notifier.MainActivity.soundId;
 
@@ -15,7 +16,8 @@ public class SoundNotifier extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
+        if (preference.getPreferenceBoolean(Preference.KEY_ON_OFF) &&
+                event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
             sound.play(soundId, 1, 1, 1, 0, 1);
             new Handler().postDelayed(new Runnable() {
                 @Override
