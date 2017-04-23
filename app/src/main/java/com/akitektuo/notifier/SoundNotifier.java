@@ -1,10 +1,9 @@
 package com.akitektuo.notifier;
 
 import android.accessibilityservice.AccessibilityService;
+import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.Toast;
 
-import static android.widget.Toast.LENGTH_SHORT;
 import static com.akitektuo.notifier.MainActivity.sound;
 import static com.akitektuo.notifier.MainActivity.soundId;
 
@@ -17,9 +16,13 @@ public class SoundNotifier extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
-            //Play sound
             sound.play(soundId, 1, 1, 1, 0, 1);
-            Toast.makeText(getApplicationContext(), "Here is a notification!", LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sound.autoPause();
+                }
+            }, 1000);
         }
     }
 
